@@ -5,18 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>L2S Pro</title>
 <meta name="apple-mobile-web-app-title" content="L2S Pro">
-<meta name="application-name" content="L2S Pro">  
+<meta name="application-name" content="L2S Pro">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#f0f4f8;margin:0;padding:4px;color:#1e293b;min-height:100dvh;display:flex;align-items:flex-start;justify-content:center}
-.container{width:100%;max-width:480px;background:#fff;padding:6px 8px 8px;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
-.qr-section{background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);border:2px solid #90caf9;border-radius:14px;text-align:center;padding:5px 6px 7px;margin-bottom:6px;transform:rotate(180deg);box-shadow:inset 0 2px 4px rgba(255,255,255,.6)}
+.container{width:100%;max-width:480px;background:#fff;padding:5px 8px 6px;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.qr-section{background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);border:2px solid #90caf9;border-radius:14px;text-align:center;padding:4px 6px 6px;margin-bottom:5px;transform:rotate(180deg);box-shadow:inset 0 2px 4px rgba(255,255,255,.6)}
 .qr-section.hidden-for-reg{display:none}
-.ca-logo{width:74px;height:auto;margin-bottom:1px;display:inline-block}
-.store-title{font-size:.86rem;font-weight:800;color:#0d47a1;margin:0 0 1px;line-height:1.15;letter-spacing:-.02em}
-.store-subtitle{font-size:.86rem;font-weight:800;color:#d93025;margin:0 0 5px;line-height:1.15}
-.qr-box-wrap{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:6px;background:#fff;border-radius:12px;box-shadow:0 3px 10px rgba(13,71,161,.15);width:182px;height:182px}
+.ca-logo{width:70px;height:auto;margin-bottom:1px;display:inline-block}
+.store-title{font-size:.84rem;font-weight:800;color:#0d47a1;margin:0 0 1px;line-height:1.12;letter-spacing:-.02em}
+.store-subtitle{font-size:.84rem;font-weight:800;color:#d93025;margin:0 0 4px;line-height:1.12}
+.qr-box-wrap{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:4px;background:#fff;border-radius:12px;box-shadow:0 3px 10px rgba(13,71,161,.15);width:178px;height:178px}
 #qrcode{width:170px;height:170px;display:flex;align-items:center;justify-content:center}
 #qrcode img,#qrcode canvas{display:block;margin:0 auto}
 .placeholder-text{color:#555;font-size:.78rem;font-weight:600;line-height:1.45;padding:0 4px}
@@ -25,7 +25,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 .used-stamp{border:3px solid #64748b;color:#475569;font-size:1.15rem;font-weight:900;padding:5px 14px;border-radius:8px;background:#fff;letter-spacing:.08em}
 .used-stamp.ng3{border-color:#b91c1c;color:#b91c1c}
 .mode-bar{display:flex;gap:3px;margin-bottom:5px}
-.mode-btn{flex:1;border:1.5px solid #cbd5e1;background:#f8fafc;color:#475569;font-size:.7rem;font-weight:800;padding:6px 1px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.mode-btn{flex:1;border:1.5px solid #cbd5e1;background:#f8fafc;color:#475569;font-size:.7rem;font-weight:800;padding:5px 1px;border-radius:8px;cursor:pointer;white-space:nowrap}
 .mode-btn.active{background:#1a73e8;border-color:#1a73e8;color:#fff}
 .icon-btn{width:29px;border:1.5px solid #cbd5e1;background:#f8fafc;border-radius:8px;font-size:.82rem;cursor:pointer;flex-shrink:0;padding:0}
 .icon-btn:active{background:#e2e8f0}
@@ -86,17 +86,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 .reg-radio-label input{margin:0}
 .reg-input,.reg-select{width:100%;padding:9px 10px;border:1.5px solid #cbd5e1;border-radius:8px;font-size:.9rem;font-weight:700;background:#fff}
 .reg-btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
-.action-btn{border:none;border-radius:9px;padding:10px 6px;font-size:.8rem;font-weight:800;color:#fff;cursor:pointer;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,.12)}
+.action-btn{border:none;border-radius:9px;padding:8px 6px;font-size:.79rem;font-weight:800;color:#fff;cursor:pointer;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,.12)}
 .action-btn:active{transform:translateY(1px)}
+.action-btn:disabled{opacity:.6;pointer-events:none}
 .btn-blue{background:#1a73e8}.btn-indigo{background:#4f46e5}.btn-teal{background:#0f766e}.btn-gray{background:#64748b}.btn-green{background:#15803d}.btn-red{background:#dc2626}.btn-full{width:100%}
-.live-cam-wrap{display:none;background:#000;border-radius:10px;overflow:hidden;margin-bottom:8px;position:relative}
+.live-cam-wrap{display:none;background:#000;border-radius:10px;overflow:hidden;margin-bottom:5px;position:relative}
 .live-cam-wrap.show{display:block}
 .live-video{width:100%;max-height:240px;object-fit:cover;display:block}
+.live-video.compact{height:112px;max-height:112px}
 .cam-guide{position:absolute;top:50%;left:8%;right:8%;height:60%;transform:translateY(-50%);border:2px dashed rgba(255,255,255,.85);border-radius:8px;pointer-events:none}
-.cam-guide.narrow{height:36%}
+.cam-guide.narrow{height:65%}
 .cam-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .18s ease-out;z-index:10}
 .cam-flash.active{opacity:.9;transition:none}
-.cam-controls{display:flex;gap:6px;padding:6px;background:#1e293b}
+.cam-controls{display:flex;gap:6px;padding:5px;background:#1e293b}
 .progress-bar-wrap{background:#e2e8f0;height:10px;border-radius:999px;overflow:hidden;margin:6px 0 8px}
 .progress-bar-fill{height:100%;width:0%;background:#1a73e8;transition:width .25s}
 .progress-bar-fill.complete{background:#16a34a}
@@ -107,19 +109,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 .reg-item-input{flex:1;min-width:0;border:none;background:transparent;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:slashed-zero;font-size:1.12rem;font-weight:800;letter-spacing:.03em;color:#0f172a;outline:none}
 .reg-dup-tag{font-size:.64rem;font-weight:800;color:#b91c1c;background:#fee2e2;padding:2px 5px;border-radius:4px;white-space:nowrap}
 .reg-del-btn{border:none;background:#f1f5f9;color:#64748b;border-radius:6px;padding:4px 7px;font-size:.78rem;font-weight:800;cursor:pointer}
-.ocr-status{font-size:.76rem;font-weight:800;color:#0369a1;margin:4px 0 6px;min-height:1.15em}
+.ocr-status{font-size:.73rem;font-weight:800;color:#0369a1;margin:2px 0 4px;min-height:1.15em;line-height:1.25}
+.ocr-status.one-line{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bulk-textarea{width:100%;height:74px;border:1.5px solid #cbd5e1;border-radius:8px;padding:8px;font-size:.82rem;resize:vertical;margin-bottom:6px}
-.instant-cam-row{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
-.instant-chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
-.instant-chip{border:1.5px solid #93c5fd;background:#eff6ff;color:#1e40af;border-radius:6px;padding:5px 8px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:slashed-zero;font-size:.9rem;font-weight:800;cursor:pointer}
+.instant-cam-row{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:5px}
+.instant-chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:4px}
+.instant-chips:empty{margin-bottom:0}
+.instant-chip{border:1.5px solid #93c5fd;background:#eff6ff;color:#1e40af;border-radius:6px;padding:4px 8px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:slashed-zero;font-size:.9rem;font-weight:800;cursor:pointer}
 .instant-chip.active{background:#1a73e8;border-color:#1a73e8;color:#fff}
-.form-group{margin-bottom:7px}
-.paste-label{display:block;font-size:.75rem;font-weight:800;margin-bottom:3px;color:#475569}
-.paste-area{width:100%;padding:8px 10px;border:2px solid #cbd5e1;border-radius:10px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:slashed-zero;font-size:1.3rem;font-weight:800;letter-spacing:.05em;text-align:center;resize:none;height:48px;background:#fafafa;color:#0f172a}
-.paste-area::placeholder{font-size:.8rem;font-family:sans-serif;letter-spacing:0;color:#94a3b8}
+.form-group{margin-bottom:5px}
+.paste-label{display:block;font-size:.72rem;font-weight:800;margin-bottom:2px;color:#475569}
+.paste-area{width:100%;padding:6px 10px;border:2px solid #cbd5e1;border-radius:10px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:slashed-zero;font-size:1.3rem;font-weight:800;letter-spacing:.05em;text-align:center;resize:none;height:42px;background:#fafafa;color:#0f172a}
+.paste-area::placeholder{font-size:.78rem;font-family:sans-serif;letter-spacing:0;color:#94a3b8}
 .paste-area:focus{border-color:#1a73e8;background:#fff;outline:none}
 .button-row{display:flex;gap:6px}
-.sub-button{flex:1;color:#fff;border:none;padding:10px;font-size:.82rem;font-weight:800;border-radius:8px;cursor:pointer}
+.sub-button{flex:1;color:#fff;border:none;padding:8px;font-size:.8rem;font-weight:800;border-radius:8px;cursor:pointer}
 #keyboardToggleBtn{background:#5f6368}
 #clearBtn{background:#d93025}
 .modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.58);display:none;align-items:center;justify-content:center;padding:12px;z-index:100}
@@ -196,21 +200,21 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
   <div id="panelPaste" class="panel active">
     <div class="instant-cam-row">
       <button type="button" class="action-btn btn-blue" onclick="document.getElementById('instantCamInput').click()">📷 カメラで即読</button>
-      <button type="button" class="action-btn btn-teal" onclick="startInstantCamera()">🎥 画面内カメラ</button>
+      <button type="button" class="action-btn btn-teal" onclick="startInstantCamera(false)">🎥 画面内カメラ</button>
     </div>
     <input type="file" id="instantCamInput" accept="image/*" capture="environment" style="display:none" onchange="handleInstantFileSelect(this)">
 
     <div id="instantCamWrap" class="live-cam-wrap">
-      <video id="instantVideo" class="live-video" autoplay playsinline muted></video>
+      <video id="instantVideo" class="live-video compact" autoplay playsinline muted></video>
       <div class="cam-guide narrow"></div>
       <div id="instantFlash" class="cam-flash"></div>
       <div class="cam-controls">
-        <button type="button" class="action-btn btn-green" style="flex:2;" onclick="captureInstantCamera()">📸 パシャッと即QR表示</button>
+        <button type="button" id="instantCaptureBtn" class="action-btn btn-green" style="flex:2;" onclick="captureInstantCamera()">📸 パシャッと即QR表示</button>
         <button type="button" class="action-btn btn-gray" style="flex:1;" onclick="stopInstantCamera()">閉じる</button>
       </div>
     </div>
 
-    <div id="instantOcrStatus" class="ocr-status"></div>
+    <div id="instantOcrStatus" class="ocr-status one-line"></div>
     <div id="instantCandidates" class="instant-chips"></div>
 
     <div class="form-group">
@@ -269,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
       <div class="reg-btn-grid">
         <button type="button" class="action-btn btn-blue" onclick="document.getElementById('camFileInput').click()">📷 標準カメラで撮る</button>
         <button type="button" class="action-btn btn-indigo" onclick="document.getElementById('galleryFileInput').click()">🖼️ 写真から選ぶ</button>
-        <button type="button" class="action-btn btn-teal" onclick="startLiveCamera()" style="grid-column:span 2;">🎥 画面内カメラで連続撮影</button>
+        <button type="button" class="action-btn btn-teal" onclick="startLiveCamera(false)" style="grid-column:span 2;">🎥 画面内カメラで連続撮影</button>
       </div>
       <input type="file" id="camFileInput" accept="image/*" capture="environment" style="display:none" onchange="handleFileSelect(this)">
       <input type="file" id="galleryFileInput" accept="image/*" multiple style="display:none" onchange="handleFileSelect(this)">
@@ -279,7 +283,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
         <div class="cam-guide"></div>
         <div id="liveFlash" class="cam-flash"></div>
         <div class="cam-controls">
-          <button type="button" class="action-btn btn-green" style="flex:2;" onclick="captureLiveCamera()">📸 パシャッと読み取る</button>
+          <button type="button" id="liveCaptureBtn" class="action-btn btn-green" style="flex:2;" onclick="captureLiveCamera()">📸 パシャッと読み取る</button>
           <button type="button" class="action-btn btn-gray" style="flex:1;" onclick="stopLiveCamera()">閉じる</button>
         </div>
       </div>
@@ -353,9 +357,10 @@ let appState={lots:[],allVisibleLotNames:[],ngItems:[],existingCodeMap:{}};
 let activeLotIdx=0,distSelectedIdx=0;
 let ngFilter='active',filteredNgItems=[],ngSelectedIdx=0;
 let stagedCodes=[],liveStream=null,instantStream=null;
-let isSaving=false,toastTimers={};
+let isSaving=false,isOcrBusy=false,toastTimers={};
 let soundEnabled=localStorage.getItem(STORAGE_KEY_SOUND)!=='0';
 let audioCtx=null;
+let restoreNoticePending=false;
 
 window.addEventListener('DOMContentLoaded',()=>{
   updateSoundBtn();
@@ -375,21 +380,45 @@ window.addEventListener('DOMContentLoaded',()=>{
     openSettingsModal();
     return;
   }
-  if(restored)setInstantStatus('✓ URLから接続設定を自動復元しました');
+  if(restored){
+    restoreNoticePending=true;
+    setInstantStatus('✓ 設定を自動復元しました');
+  }
   loadAppState();
+  startInstantCamera(true);
 });
 
-/* 自動復元URLエンコード／デコード（#cfg= の中身はサーバーへ送信されません） */
+/* アプリ切替・スリープ復帰時のカメラ自動再開 */
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden)return;
+  if(currentMode==='paste'&&document.getElementById('instantCamWrap').classList.contains('show')){
+    ensureStreamAlive(instantStream,document.getElementById('instantVideo'),()=>startInstantCamera(true));
+  }else if(currentMode==='reg'&&document.getElementById('liveCamWrap').classList.contains('show')){
+    ensureStreamAlive(liveStream,document.getElementById('liveVideo'),()=>startLiveCamera(true));
+  }
+});
+function ensureStreamAlive(stream,videoEl,restartFn){
+  const tracks=stream?stream.getVideoTracks():[];
+  const alive=tracks.length>0&&tracks.some(t=>t.readyState==='live');
+  if(!alive){restartFn();return;}
+  if(videoEl&&videoEl.paused){videoEl.play().catch(()=>restartFn());}
+}
+
+/* 自動復元URL（TextEncoder / TextDecoderによる標準Base64URL） */
 function encodeRestoreToken(url,pass){
-  const json=JSON.stringify({u:url,p:pass});
-  const b64=btoa(unescape(encodeURIComponent(json)));
-  return b64.replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  const bytes=new TextEncoder().encode(JSON.stringify({u:url,p:pass}));
+  let bin='';
+  for(let i=0;i<bytes.length;i++)bin+=String.fromCharCode(bytes[i]);
+  return btoa(bin).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
 }
 function decodeRestoreToken(token){
   try{
     let b64=token.replace(/-/g,'+').replace(/_/g,'/');
     while(b64.length%4)b64+='=';
-    const obj=JSON.parse(decodeURIComponent(escape(atob(b64))));
+    const bin=atob(b64);
+    const bytes=new Uint8Array(bin.length);
+    for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+    const obj=JSON.parse(new TextDecoder().decode(bytes));
     if(obj&&typeof obj.u==='string'&&typeof obj.p==='string'&&obj.u.indexOf('https://script.google.com/')===0&&obj.p){
       return{url:obj.u.trim(),pass:obj.p.trim()};
     }
@@ -412,8 +441,7 @@ function restoreConfigFromHash(){
 function buildRestoreUrl(){
   const {url,pass}=getSavedConfig();
   if(!url||!pass)return '';
-  const base=window.location.href.split('#')[0];
-  return base+'#cfg='+encodeRestoreToken(url,pass);
+  return window.location.href.split('#')[0]+'#cfg='+encodeRestoreToken(url,pass);
 }
 function applyRestoreUrlToBar(){
   const full=buildRestoreUrl();
@@ -442,6 +470,7 @@ function toggleTransferQr(){
   wrap.classList.add('show');
 }
 
+/* 効果音・フラッシュ */
 function getAudioCtx(){
   const AC=window.AudioContext||window.webkitAudioContext;
   if(!AC)return null;
@@ -493,6 +522,7 @@ function triggerFlash(id){
   requestAnimationFrame(()=>setTimeout(()=>el.classList.remove('active'),45));
 }
 
+/* 接続設定 */
 function getSavedConfig(){
   return{url:(localStorage.getItem(STORAGE_KEY_URL)||'').trim(),pass:(localStorage.getItem(STORAGE_KEY_PASS)||'').trim()};
 }
@@ -549,6 +579,7 @@ function clearSavedSettings(){
   markNeedsSetup(true);updateBackupBoxVisibility();setSettingsMsg('接続設定を削除しました。',true);
 }
 
+/* GAS通信 */
 async function callGasApi(payload,overrideUrl,overridePass){
   const cfg=getSavedConfig();
   const url=overrideUrl||cfg.url,pass=overridePass||cfg.pass;
@@ -580,6 +611,7 @@ function applyLoadedAppState(data,prevLotName){
   renderLotButtons();selectLot(activeLotIdx,true);renderNgTabBadge();refreshNgListUI(true);refreshAppendTabOptions();renderRegList();
 }
 
+/* モード切替 */
 function switchMode(mode){
   if(currentMode==='reg'&&mode!=='reg')stopLiveCamera();
   if(currentMode==='paste'&&mode!=='paste')stopInstantCamera();
@@ -595,6 +627,7 @@ function switchMode(mode){
   else if(mode==='paste')renderPasteQR();
 }
 
+/* 配布モード */
 function renderLotButtons(){
   const grid=document.getElementById('lotGrid');
   if(!appState.lots||appState.lots.length===0){
@@ -710,6 +743,7 @@ async function applyDistStatusChange(lot,itemIdx,nextStatus){
   }
 }
 
+/* NGリストモード */
 function renderNgTabBadge(){document.getElementById('ngTabCount').textContent=(appState.ngItems||[]).filter(i=>i.status!=='済').length;}
 function setNgFilter(filter){
   ngFilter=filter;
@@ -788,6 +822,7 @@ async function applyNgStatusChange(item,nextStatus){
   }catch(err){isSaving=false;updateNgSliders();showToast('ngToast','',0);alert('更新に失敗しました：'+err.message);}
 }
 
+/* 50枚登録モード */
 function toggleRegMode(){
   const mode=document.querySelector('input[name="regMode"]:checked').value;
   document.getElementById('regNewWrap').style.display=mode==='new'?'block':'none';
@@ -805,32 +840,66 @@ async function handleFileSelect(input){
     catch(err){setOcrStatus('⚠️ 読み取りエラー：'+err.message);}
   }
 }
-async function startLiveCamera(){
-  getAudioCtx();
+async function startLiveCamera(isAuto){
+  if(!isAuto)getAudioCtx();
   const wrap=document.getElementById('liveCamWrap'),video=document.getElementById('liveVideo');
   try{
     stopInstantCamera();stopLiveCamera();
     liveStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}},audio:false});
-    video.srcObject=liveStream;wrap.classList.add('show');
+    video.muted=true;
+    video.srcObject=liveStream;
+    wrap.classList.add('show');
+    await video.play().catch(()=>{});
     setOcrStatus('📸 枠内にカードを並べて「パシャッと読み取る」を押してください');
-  }catch(err){alert('画面内カメラを起動できませんでした。「📷 標準カメラで撮る」をお使いください。\n('+err.message+')');}
+  }catch(err){
+    if(!isAuto)alert('画面内カメラを起動できませんでした。「📷 標準カメラで撮る」をお使いください。\n('+err.message+')');
+  }
 }
 function stopLiveCamera(){
   if(liveStream){liveStream.getTracks().forEach(t=>t.stop());liveStream=null;}
+  const video=document.getElementById('liveVideo');if(video)video.srcObject=null;
   document.getElementById('liveCamWrap').classList.remove('show');
 }
 async function captureLiveCamera(){
+  if(isOcrBusy)return;
   const video=document.getElementById('liveVideo');if(!video.videoWidth)return;
+  const btn=document.getElementById('liveCaptureBtn');
+  isOcrBusy=true;btn.disabled=true;
   playShutterSound();triggerFlash('liveFlash');
   const dataUrl=captureVideoFrame(video,1600,0.85);
   setOcrStatus('⏳ Google OCRで読み取り中...');
-  try{await sendImageToOcr(dataUrl);}catch(err){setOcrStatus('⚠️ 読み取りエラー：'+err.message);}
+  try{await sendImageToOcr(dataUrl);}
+  catch(err){setOcrStatus('⚠️ 読み取りエラー：'+err.message);}
+  finally{isOcrBusy=false;btn.disabled=false;}
 }
 function captureVideoFrame(video,maxSide,quality){
   const canvas=document.createElement('canvas');
   const scale=Math.min(1,maxSide/Math.max(video.videoWidth,video.videoHeight));
   canvas.width=Math.round(video.videoWidth*scale);canvas.height=Math.round(video.videoHeight*scale);
   canvas.getContext('2d').drawImage(video,0,0,canvas.width,canvas.height);
+  return canvas.toDataURL('image/jpeg',quality);
+}
+/* 112pxスリム枠で見えている範囲＋少しの安全余白だけを切り抜いてOCR精度向上 */
+function captureVisibleVideoFrame(video,maxSide,quality){
+  const vw=video.videoWidth,vh=video.videoHeight;
+  const rect=video.getBoundingClientRect();
+  if(!rect.width||!rect.height)return captureVideoFrame(video,maxSide,quality);
+  const videoAspect=vw/vh,boxAspect=rect.width/rect.height;
+  let sx=0,sy=0,sw=vw,sh=vh;
+  if(boxAspect>videoAspect){
+    const visH=vw/boxAspect;
+    sh=Math.min(vh,visH*1.35);
+    sy=Math.max(0,(vh-sh)/2);
+  }else{
+    const visW=vh*boxAspect;
+    sw=Math.min(vw,visW*1.2);
+    sx=Math.max(0,(vw-sw)/2);
+  }
+  const scale=Math.min(1,maxSide/Math.max(sw,sh));
+  const canvas=document.createElement('canvas');
+  canvas.width=Math.max(1,Math.round(sw*scale));
+  canvas.height=Math.max(1,Math.round(sh*scale));
+  canvas.getContext('2d').drawImage(video,sx,sy,sw,sh,0,0,canvas.width,canvas.height);
   return canvas.toDataURL('image/jpeg',quality);
 }
 function resizeImageFile(file,maxSide,quality){
@@ -908,39 +977,66 @@ async function submitRegistration(){
 }
 function setOcrStatus(msg){document.getElementById('ocrStatus').textContent=msg;}
 
+/* 現場カメラ即時読み取り＆ペーストモード */
 function setInstantStatus(msg){document.getElementById('instantOcrStatus').textContent=msg;}
 async function handleInstantFileSelect(input){
-  const file=input.files&&input.files[0];input.value='';if(!file)return;
+  const file=input.files&&input.files[0];input.value='';if(!file||isOcrBusy)return;
+  isOcrBusy=true;
   setInstantStatus('⏳ カードを読み取り中...');
   try{const dataUrl=await resizeImageFile(file,1600,0.85);await runInstantOcr(dataUrl);}
   catch(err){setInstantStatus('⚠️ '+err.message);}
+  finally{isOcrBusy=false;}
 }
-async function startInstantCamera(){
-  getAudioCtx();
+async function startInstantCamera(isAuto){
+  if(!isAuto)getAudioCtx();
   const wrap=document.getElementById('instantCamWrap'),video=document.getElementById('instantVideo');
   try{
     stopLiveCamera();stopInstantCamera();
     instantStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}},audio:false});
-    video.srcObject=instantStream;wrap.classList.add('show');
-    setInstantStatus('📸 枠内にコードを合わせて「パシャッと即QR表示」を押してください');
-  }catch(err){alert('画面内カメラを起動できませんでした。「📷 カメラで即読」をお使いください。\n('+err.message+')');}
+    video.muted=true;
+    video.srcObject=instantStream;
+    wrap.classList.add('show');
+    await video.play().catch(()=>{});
+    if(restoreNoticePending){
+      restoreNoticePending=false;
+      setInstantStatus('✓ 設定を自動復元しました（撮影OK）');
+    }else{
+      setInstantStatus('📸 枠に合わせて「パシャッと即QR表示」');
+    }
+  }catch(err){
+    if(isAuto){
+      if(restoreNoticePending){
+        restoreNoticePending=false;
+        setInstantStatus('✓ 設定復元済（🎥ボタンでカメラ起動）');
+      }else{
+        setInstantStatus('📸 「🎥 画面内カメラ」で起動します');
+      }
+    }else{
+      alert('画面内カメラを起動できませんでした。「📷 カメラで即読」をお使いください。\n('+err.message+')');
+    }
+  }
 }
 function stopInstantCamera(){
   if(instantStream){instantStream.getTracks().forEach(t=>t.stop());instantStream=null;}
+  const video=document.getElementById('instantVideo');if(video)video.srcObject=null;
   document.getElementById('instantCamWrap').classList.remove('show');
 }
 async function captureInstantCamera(){
+  if(isOcrBusy)return;
   const video=document.getElementById('instantVideo');if(!video.videoWidth)return;
+  const btn=document.getElementById('instantCaptureBtn');
+  isOcrBusy=true;btn.disabled=true;
   playShutterSound();triggerFlash('instantFlash');
-  const dataUrl=captureVideoFrame(video,1600,0.85);
+  const dataUrl=captureVisibleVideoFrame(video,1600,0.85);
   setInstantStatus('⏳ コードを読み取り中...');
   try{const ok=await runInstantOcr(dataUrl);if(ok)stopInstantCamera();}
   catch(err){setInstantStatus('⚠️ '+err.message);}
+  finally{isOcrBusy=false;btn.disabled=false;}
 }
 async function runInstantOcr(dataUrl){
   const res=await callGasApi({action:'ocrImage',imageBase64:dataUrl,mimeType:'image/jpeg'});
   const found=res.codes||[];
-  if(found.length===0){setInstantStatus('⚠️ 13桁コードが見つかりませんでした。ピントを合わせて撮り直してみてください。');return false;}
+  if(found.length===0){setInstantStatus('⚠️ 未検出：ピントを合わせて撮り直してください');return false;}
   playSuccessSound();
   applyInstantCode(found[0]);
   renderInstantCandidates(found,found[0]);
@@ -982,6 +1078,7 @@ function clearText(){
   document.getElementById('instantCandidates').innerHTML='';setInstantStatus('');renderPasteQR();ta.focus();
 }
 
+/* 共通UI（ダイヤル・スライダー・QR描画） */
 function initWheel(elId,onChange){
   const wheel=document.getElementById(elId);let timer=null;
   wheel.addEventListener('scroll',()=>{

@@ -10,38 +10,38 @@
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#f0f4f8;margin:0;padding:4px;color:#1e293b;min-height:100dvh;display:flex;align-items:flex-start;justify-content:center}
-.container{width:100%;max-width:480px;background:#fff;padding:5px 8px 6px;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
-.qr-section{background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);border:2px solid #90caf9;border-radius:14px;text-align:center;padding:4px 6px 6px;margin-bottom:5px;transform:rotate(180deg);box-shadow:inset 0 2px 4px rgba(255,255,255,.6)}
+.container{width:100%;max-width:480px;background:#fff;padding:6px 8px 8px;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.qr-section{background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 100%);border:2px solid #90caf9;border-radius:14px;text-align:center;padding:5px 6px 8px;margin-bottom:6px;transform:rotate(180deg);box-shadow:inset 0 2px 4px rgba(255,255,255,.6)}
 .qr-section.hidden-for-reg{display:none}
-.ca-logo{width:70px;height:auto;margin-bottom:1px;display:inline-block}
-.store-title{font-size:.84rem;font-weight:800;color:#0d47a1;margin:0 0 1px;line-height:1.12;letter-spacing:-.02em}
-.store-subtitle{font-size:.84rem;font-weight:800;color:#d93025;margin:0 0 4px;line-height:1.12}
-.qr-box-wrap{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:4px;background:#fff;border-radius:12px;box-shadow:0 3px 10px rgba(13,71,161,.15);width:178px;height:178px}
-#qrcode{width:170px;height:170px;display:flex;align-items:center;justify-content:center}
+.ca-logo{width:80px;height:auto;margin-bottom:2px;display:inline-block}
+.store-title{font-size:.9rem;font-weight:800;color:#0d47a1;margin:0 0 1px;line-height:1.15;letter-spacing:-.02em}
+.store-subtitle{font-size:.9rem;font-weight:800;color:#d93025;margin:0 0 5px;line-height:1.15}
+.qr-box-wrap{position:relative;display:inline-flex;align-items:center;justify-content:center;padding:6px;background:#fff;border-radius:12px;box-shadow:0 3px 10px rgba(13,71,161,.16);width:212px;height:212px}
+#qrcode{width:200px;height:200px;display:flex;align-items:center;justify-content:center}
 #qrcode img,#qrcode canvas{display:block;margin:0 auto}
-.placeholder-text{color:#555;font-size:.78rem;font-weight:600;line-height:1.45;padding:0 4px}
+.placeholder-text{color:#555;font-size:.82rem;font-weight:600;line-height:1.5;padding:0 6px}
 .used-overlay{position:absolute;inset:0;background:rgba(255,255,255,.88);border-radius:12px;display:none;flex-direction:column;align-items:center;justify-content:center;z-index:5}
 .used-overlay.show{display:flex}
-.used-stamp{border:3px solid #64748b;color:#475569;font-size:1.15rem;font-weight:900;padding:5px 14px;border-radius:8px;background:#fff;letter-spacing:.08em}
+.used-stamp{border:3px solid #64748b;color:#475569;font-size:1.2rem;font-weight:900;padding:6px 16px;border-radius:8px;background:#fff;letter-spacing:.08em}
 .used-stamp.ng3{border-color:#b91c1c;color:#b91c1c}
-.mode-bar{display:flex;gap:3px;margin-bottom:5px}
-.mode-btn{flex:1;border:1.5px solid #cbd5e1;background:#f8fafc;color:#475569;font-size:.7rem;font-weight:800;padding:5px 1px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.mode-bar{display:flex;gap:3px;margin-bottom:6px}
+.mode-btn{flex:1;border:1.5px solid #cbd5e1;background:#f8fafc;color:#475569;font-size:.71rem;font-weight:800;padding:6px 1px;border-radius:8px;cursor:pointer;white-space:nowrap}
 .mode-btn.active{background:#1a73e8;border-color:#1a73e8;color:#fff}
-.icon-btn{width:29px;border:1.5px solid #cbd5e1;background:#f8fafc;border-radius:8px;font-size:.82rem;cursor:pointer;flex-shrink:0;padding:0}
+.icon-btn{width:30px;border:1.5px solid #cbd5e1;background:#f8fafc;border-radius:8px;font-size:.84rem;cursor:pointer;flex-shrink:0;padding:0}
 .icon-btn:active{background:#e2e8f0}
 .icon-btn.needs-setup{background:#fef2f2;border-color:#ef4444}
 .icon-btn.muted{background:#f1f5f9;color:#94a3b8}
 .panel{display:none}
 .panel.active{display:block}
-.lot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:5px}
-.lot-btn{border:1.5px solid #cbd5e1;background:#f8fafc;color:#334155;border-radius:8px;padding:4px 2px;cursor:pointer;text-align:center;overflow:hidden;transition:all .12s}
+.lot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:6px}
+.lot-btn{border:1.5px solid #cbd5e1;background:#f8fafc;color:#334155;border-radius:8px;padding:5px 2px;cursor:pointer;text-align:center;overflow:hidden;transition:all .12s}
 .lot-btn.active{background:#0d47a1;border-color:#0d47a1;color:#fff;box-shadow:0 2px 5px rgba(13,71,161,.28)}
 .lot-btn.low:not(.active){background:#fff7ed;border-color:#fdba74}
-.lot-name{display:block;font-size:.75rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
-.lot-rem{display:block;font-size:.65rem;font-weight:700;opacity:.85;line-height:1.1;margin-top:1px}
-.meta-row{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#475569;margin-bottom:4px;padding:0 2px}
+.lot-name{display:block;font-size:.76rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
+.lot-rem{display:block;font-size:.66rem;font-weight:700;opacity:.85;line-height:1.1;margin-top:1px}
+.meta-row{display:flex;justify-content:space-between;align-items:center;font-size:.73rem;font-weight:700;color:#475569;margin-bottom:5px;padding:0 2px}
 .toast-msg{color:#0f766e;font-weight:800;min-height:1.1em}
-.wheel-wrapper{position:relative;height:114px;border-radius:10px;background:#f8fafc;border:2px solid #cbd5e1;overflow:hidden;margin-bottom:6px}
+.wheel-wrapper{position:relative;height:114px;border-radius:10px;background:#f8fafc;border:2px solid #cbd5e1;overflow:hidden;margin-bottom:8px}
 .wheel-highlight{position:absolute;top:38px;left:0;right:0;height:38px;background:rgba(26,115,232,.10);border-top:2px solid #1a73e8;border-bottom:2px solid #1a73e8;pointer-events:none;z-index:2}
 .wheel-fade-top,.wheel-fade-bottom{position:absolute;left:0;right:0;height:28px;pointer-events:none;z-index:3}
 .wheel-fade-top{top:0;background:linear-gradient(to bottom,rgba(248,250,252,.92),rgba(248,250,252,0))}
@@ -61,41 +61,43 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 .wheel-item.st-ng3 .status-badge{display:inline-block;background:#fecaca;color:#991b1b}
 .wheel-item.st-done .status-badge{display:inline-block;background:#cbd5e1;color:#475569}
 .wheel-empty{height:114px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:.78rem;font-weight:700;color:#64748b;padding:0 12px;line-height:1.45}
-.sliders-stack{display:flex;flex-direction:column;gap:5px}
-.slide-track{position:relative;height:36px;border-radius:18px;background:#fee2e2;border:1.5px solid #fca5a5;overflow:hidden;user-select:none;touch-action:none}
+.sliders-stack{display:flex;flex-direction:column;gap:7px}
+.slide-track{position:relative;height:44px;border-radius:22px;background:#fee2e2;border:1.5px solid #fca5a5;overflow:hidden;user-select:none;touch-action:none}
 .slide-track.type-ng{background:#fef3c7;border-color:#fcd34d}
 .slide-track.mode-undo{background:#e0f2fe;border-color:#7dd3fc}
 .slide-track.disabled{opacity:.42;pointer-events:none;background:#e2e8f0;border-color:#cbd5e1}
 .slide-fill{position:absolute;top:0;left:0;bottom:0;width:0;background:rgba(217,48,37,.22);pointer-events:none}
 .slide-track.type-ng .slide-fill{background:rgba(217,119,6,.24)}
 .slide-track.mode-undo .slide-fill{background:rgba(26,115,232,.22)}
-.slide-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-left:34px;font-size:.78rem;font-weight:800;color:#b91c1c;pointer-events:none}
+.slide-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-left:40px;font-size:.82rem;font-weight:800;color:#b91c1c;pointer-events:none}
 .slide-track.type-ng .slide-label{color:#92400e}
 .slide-track.mode-undo .slide-label{color:#0369a1}
-.slide-thumb{position:absolute;top:2px;left:2px;width:44px;height:29px;border-radius:15px;background:#d93025;color:#fff;font-size:.9rem;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px rgba(0,0,0,.2);cursor:grab;touch-action:none;z-index:2}
+.slide-thumb{position:absolute;top:3px;left:3px;width:48px;height:35px;border-radius:18px;background:#d93025;color:#fff;font-size:.94rem;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px rgba(0,0,0,.2);cursor:grab;touch-action:none;z-index:2}
 .slide-track.type-ng .slide-thumb{background:#d97706}
 .slide-track.mode-undo .slide-thumb{background:#1a73e8}
 .slide-thumb.animating,.slide-fill.animating{transition:transform .2s ease,width .2s ease}
-.filter-row{display:flex;gap:4px;margin-bottom:5px}
-.filter-btn{flex:1;border:1.5px solid #cbd5e1;background:#f8fafc;color:#475569;font-size:.72rem;font-weight:800;padding:5px 2px;border-radius:7px;cursor:pointer}
+.filter-row{display:flex;gap:4px;margin-bottom:6px}
+.filter-btn{flex:1;border:1.5px solid #cbd5e1;background:#f8fafc;color:#475569;font-size:.73rem;font-weight:800;padding:6px 2px;border-radius:7px;cursor:pointer}
 .filter-btn.active{background:#d97706;border-color:#d97706;color:#fff}
 .reg-box{background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:12px;padding:10px;margin-bottom:10px}
-.reg-title{font-size:.85rem;font-weight:800;color:#0d47a1;margin:0 0 8px}
+.reg-title{font-size:.86rem;font-weight:800;color:#0d47a1;margin:0 0 6px}
+.reg-subdesc{font-size:.73rem;font-weight:700;color:#334155;line-height:1.45;background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:6px 8px;margin-bottom:8px}
 .reg-radio-row{display:flex;gap:8px;margin-bottom:8px}
 .reg-radio-label{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;background:#fff;border:1.5px solid #cbd5e1;border-radius:8px;padding:7px 4px;font-size:.78rem;font-weight:800;cursor:pointer}
 .reg-radio-label input{margin:0}
 .reg-input,.reg-select{width:100%;padding:9px 10px;border:1.5px solid #cbd5e1;border-radius:8px;font-size:.9rem;font-weight:700;background:#fff}
 .reg-btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
-.action-btn{border:none;border-radius:9px;padding:8px 6px;font-size:.79rem;font-weight:800;color:#fff;cursor:pointer;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,.12)}
+.action-btn{border:none;border-radius:9px;padding:9px 6px;font-size:.8rem;font-weight:800;color:#fff;cursor:pointer;text-align:center;box-shadow:0 2px 5px rgba(0,0,0,.12)}
 .action-btn:active{transform:translateY(1px)}
 .action-btn:disabled{opacity:.6;pointer-events:none}
 .btn-blue{background:#1a73e8}.btn-indigo{background:#4f46e5}.btn-teal{background:#0f766e}.btn-gray{background:#64748b}.btn-green{background:#15803d}.btn-red{background:#dc2626}.btn-full{width:100%}
-.live-cam-wrap{display:none;background:#000;border-radius:10px;overflow:hidden;margin-bottom:5px;position:relative}
+.live-cam-wrap{display:none;background:#000;border-radius:10px;overflow:hidden;margin-bottom:5px}
 .live-cam-wrap.show{display:block}
+.cam-stage{position:relative;overflow:hidden;background:#000}
 .live-video{width:100%;max-height:240px;object-fit:cover;display:block}
-.live-video.compact{height:112px;max-height:112px}
-.cam-guide{position:absolute;top:50%;left:8%;right:8%;height:60%;transform:translateY(-50%);border:2px dashed rgba(255,255,255,.85);border-radius:8px;pointer-events:none}
-.cam-guide.narrow{height:65%}
+.live-video.compact{height:155px;max-height:155px}
+.cam-guide{position:absolute;top:50%;left:8%;right:8%;height:68%;transform:translateY(-50%);border:2px dashed rgba(255,255,255,.88);border-radius:8px;pointer-events:none}
+.cam-guide.narrow{height:66%}
 .cam-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .18s ease-out;z-index:10}
 .cam-flash.active{opacity:.9;transition:none}
 .cam-controls{display:flex;gap:6px;padding:5px;background:#1e293b}
@@ -109,8 +111,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 .reg-item-input{flex:1;min-width:0;border:none;background:transparent;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:slashed-zero;font-size:1.12rem;font-weight:800;letter-spacing:.03em;color:#0f172a;outline:none}
 .reg-dup-tag{font-size:.64rem;font-weight:800;color:#b91c1c;background:#fee2e2;padding:2px 5px;border-radius:4px;white-space:nowrap}
 .reg-del-btn{border:none;background:#f1f5f9;color:#64748b;border-radius:6px;padding:4px 7px;font-size:.78rem;font-weight:800;cursor:pointer}
-.ocr-status{font-size:.73rem;font-weight:800;color:#0369a1;margin:2px 0 4px;min-height:1.15em;line-height:1.25}
+.ocr-status{font-size:.74rem;font-weight:800;color:#0369a1;margin:2px 0 4px;min-height:1.1em;line-height:1.25}
 .ocr-status.one-line{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ocr-status:empty{min-height:0;margin:0}
 .bulk-textarea{width:100%;height:74px;border:1.5px solid #cbd5e1;border-radius:8px;padding:8px;font-size:.82rem;resize:vertical;margin-bottom:6px}
 .instant-cam-row{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:5px}
 .instant-chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:4px}
@@ -123,7 +126,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 .paste-area::placeholder{font-size:.78rem;font-family:sans-serif;letter-spacing:0;color:#94a3b8}
 .paste-area:focus{border-color:#1a73e8;background:#fff;outline:none}
 .button-row{display:flex;gap:6px}
-.sub-button{flex:1;color:#fff;border:none;padding:8px;font-size:.8rem;font-weight:800;border-radius:8px;cursor:pointer}
+.sub-button{flex:1;color:#fff;border:none;padding:9px;font-size:.81rem;font-weight:800;border-radius:8px;cursor:pointer}
 #keyboardToggleBtn{background:#5f6368}
 #clearBtn{background:#d93025}
 .modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.58);display:none;align-items:center;justify-content:center;padding:12px;z-index:100}
@@ -205,9 +208,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
     <input type="file" id="instantCamInput" accept="image/*" capture="environment" style="display:none" onchange="handleInstantFileSelect(this)">
 
     <div id="instantCamWrap" class="live-cam-wrap">
-      <video id="instantVideo" class="live-video compact" autoplay playsinline muted></video>
-      <div class="cam-guide narrow"></div>
-      <div id="instantFlash" class="cam-flash"></div>
+      <div class="cam-stage">
+        <video id="instantVideo" class="live-video compact" autoplay playsinline muted></video>
+        <div class="cam-guide narrow"></div>
+        <div id="instantFlash" class="cam-flash"></div>
+      </div>
       <div class="cam-controls">
         <button type="button" id="instantCaptureBtn" class="action-btn btn-green" style="flex:2;" onclick="captureInstantCamera()">📸 パシャッと即QR表示</button>
         <button type="button" class="action-btn btn-gray" style="flex:1;" onclick="stopInstantCamera()">閉じる</button>
@@ -269,7 +274,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
     </div>
 
     <div class="reg-box">
-      <div class="reg-title">② カードを読み取る（5〜10枚ずつ階段状に並べて撮影が最速！）</div>
+      <div class="reg-title">② カードを読み取る</div>
+      <div class="reg-subdesc">5〜10枚を階段状に並べて撮影が最速です！<br>おすすめ：ピント重視は<b>「📷標準カメラ」</b>／連続は<b>「🎥画面内カメラ」</b></div>
       <div class="reg-btn-grid">
         <button type="button" class="action-btn btn-blue" onclick="document.getElementById('camFileInput').click()">📷 標準カメラで撮る</button>
         <button type="button" class="action-btn btn-indigo" onclick="document.getElementById('galleryFileInput').click()">🖼️ 写真から選ぶ</button>
@@ -279,9 +285,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
       <input type="file" id="galleryFileInput" accept="image/*" multiple style="display:none" onchange="handleFileSelect(this)">
 
       <div id="liveCamWrap" class="live-cam-wrap">
-        <video id="liveVideo" class="live-video" autoplay playsinline muted></video>
-        <div class="cam-guide"></div>
-        <div id="liveFlash" class="cam-flash"></div>
+        <div class="cam-stage">
+          <video id="liveVideo" class="live-video" autoplay playsinline muted></video>
+          <div class="cam-guide"></div>
+          <div id="liveFlash" class="cam-flash"></div>
+        </div>
         <div class="cam-controls">
           <button type="button" id="liveCaptureBtn" class="action-btn btn-green" style="flex:2;" onclick="captureLiveCamera()">📸 パシャッと読み取る</button>
           <button type="button" class="action-btn btn-gray" style="flex:1;" onclick="stopLiveCamera()">閉じる</button>
@@ -312,7 +320,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 
 <div id="settingsModal" class="modal-backdrop">
   <div class="modal-card">
-    <h2 class="modal-title">⚙️ スプレッドシート接続設定</h2>
+    <h2 class="modal-title">⚙️ スプレッドシート接続設定 <span style="font-size:.72rem;color:#64748b;font-weight:700;">v2.1</span></h2>
     <p class="modal-desc">ご自身のGASウェブアプリURLと、<code>コード.gs</code>に設定した合言葉を入力してください。</p>
     <label class="field-label" for="inputApiUrl">GAS ウェブアプリURL（.../exec）</label>
     <input type="url" id="inputApiUrl" class="modal-input" placeholder="https://script.google.com/macros/s/.../exec">
@@ -388,7 +396,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   startInstantCamera(true);
 });
 
-/* アプリ切替・スリープ復帰時のカメラ自動再開 */
 document.addEventListener('visibilitychange',()=>{
   if(document.hidden)return;
   if(currentMode==='paste'&&document.getElementById('instantCamWrap').classList.contains('show')){
@@ -404,7 +411,6 @@ function ensureStreamAlive(stream,videoEl,restartFn){
   if(videoEl&&videoEl.paused){videoEl.play().catch(()=>restartFn());}
 }
 
-/* 自動復元URL（TextEncoder / TextDecoderによる標準Base64URL） */
 function encodeRestoreToken(url,pass){
   const bytes=new TextEncoder().encode(JSON.stringify({u:url,p:pass}));
   let bin='';
@@ -470,7 +476,6 @@ function toggleTransferQr(){
   wrap.classList.add('show');
 }
 
-/* 効果音・フラッシュ */
 function getAudioCtx(){
   const AC=window.AudioContext||window.webkitAudioContext;
   if(!AC)return null;
@@ -522,7 +527,6 @@ function triggerFlash(id){
   requestAnimationFrame(()=>setTimeout(()=>el.classList.remove('active'),45));
 }
 
-/* 接続設定 */
 function getSavedConfig(){
   return{url:(localStorage.getItem(STORAGE_KEY_URL)||'').trim(),pass:(localStorage.getItem(STORAGE_KEY_PASS)||'').trim()};
 }
@@ -579,7 +583,6 @@ function clearSavedSettings(){
   markNeedsSetup(true);updateBackupBoxVisibility();setSettingsMsg('接続設定を削除しました。',true);
 }
 
-/* GAS通信 */
 async function callGasApi(payload,overrideUrl,overridePass){
   const cfg=getSavedConfig();
   const url=overrideUrl||cfg.url,pass=overridePass||cfg.pass;
@@ -611,7 +614,6 @@ function applyLoadedAppState(data,prevLotName){
   renderLotButtons();selectLot(activeLotIdx,true);renderNgTabBadge();refreshNgListUI(true);refreshAppendTabOptions();renderRegList();
 }
 
-/* モード切替 */
 function switchMode(mode){
   if(currentMode==='reg'&&mode!=='reg')stopLiveCamera();
   if(currentMode==='paste'&&mode!=='paste')stopInstantCamera();
@@ -627,7 +629,6 @@ function switchMode(mode){
   else if(mode==='paste')renderPasteQR();
 }
 
-/* 配布モード */
 function renderLotButtons(){
   const grid=document.getElementById('lotGrid');
   if(!appState.lots||appState.lots.length===0){
@@ -743,7 +744,6 @@ async function applyDistStatusChange(lot,itemIdx,nextStatus){
   }
 }
 
-/* NGリストモード */
 function renderNgTabBadge(){document.getElementById('ngTabCount').textContent=(appState.ngItems||[]).filter(i=>i.status!=='済').length;}
 function setNgFilter(filter){
   ngFilter=filter;
@@ -822,7 +822,6 @@ async function applyNgStatusChange(item,nextStatus){
   }catch(err){isSaving=false;updateNgSliders();showToast('ngToast','',0);alert('更新に失敗しました：'+err.message);}
 }
 
-/* 50枚登録モード */
 function toggleRegMode(){
   const mode=document.querySelector('input[name="regMode"]:checked').value;
   document.getElementById('regNewWrap').style.display=mode==='new'?'block':'none';
@@ -859,6 +858,8 @@ function stopLiveCamera(){
   if(liveStream){liveStream.getTracks().forEach(t=>t.stop());liveStream=null;}
   const video=document.getElementById('liveVideo');if(video)video.srcObject=null;
   document.getElementById('liveCamWrap').classList.remove('show');
+  const st=document.getElementById('ocrStatus');
+  if(st&&st.textContent.startsWith('📸'))st.textContent='';
 }
 async function captureLiveCamera(){
   if(isOcrBusy)return;
@@ -879,7 +880,6 @@ function captureVideoFrame(video,maxSide,quality){
   canvas.getContext('2d').drawImage(video,0,0,canvas.width,canvas.height);
   return canvas.toDataURL('image/jpeg',quality);
 }
-/* 112pxスリム枠で見えている範囲＋少しの安全余白だけを切り抜いてOCR精度向上 */
 function captureVisibleVideoFrame(video,maxSide,quality){
   const vw=video.videoWidth,vh=video.videoHeight;
   const rect=video.getBoundingClientRect();
@@ -977,7 +977,6 @@ async function submitRegistration(){
 }
 function setOcrStatus(msg){document.getElementById('ocrStatus').textContent=msg;}
 
-/* 現場カメラ即時読み取り＆ペーストモード */
 function setInstantStatus(msg){document.getElementById('instantOcrStatus').textContent=msg;}
 async function handleInstantFileSelect(input){
   const file=input.files&&input.files[0];input.value='';if(!file||isOcrBusy)return;
@@ -1020,6 +1019,8 @@ function stopInstantCamera(){
   if(instantStream){instantStream.getTracks().forEach(t=>t.stop());instantStream=null;}
   const video=document.getElementById('instantVideo');if(video)video.srcObject=null;
   document.getElementById('instantCamWrap').classList.remove('show');
+  const st=document.getElementById('instantOcrStatus');
+  if(st&&st.textContent.startsWith('📸'))st.textContent='';
 }
 async function captureInstantCamera(){
   if(isOcrBusy)return;
@@ -1078,7 +1079,6 @@ function clearText(){
   document.getElementById('instantCandidates').innerHTML='';setInstantStatus('');renderPasteQR();ta.focus();
 }
 
-/* 共通UI（ダイヤル・スライダー・QR描画） */
 function initWheel(elId,onChange){
   const wheel=document.getElementById(elId);let timer=null;
   wheel.addEventListener('scroll',()=>{
@@ -1109,13 +1109,13 @@ function bindSlider(trackId,thumbId,fillId,onComplete){
   function start(cx){
     if(track.classList.contains('disabled'))return;
     dragging=true;startX=cx;currentX=0;
-    maxX=Math.max(10,track.getBoundingClientRect().width-thumb.getBoundingClientRect().width-8);
+    maxX=Math.max(10,track.getBoundingClientRect().width-thumb.getBoundingClientRect().width-9);
     thumb.classList.remove('animating');fill.classList.remove('animating');
   }
   function move(cx){
     if(!dragging)return;
     currentX=Math.max(0,Math.min(maxX,cx-startX));
-    thumb.style.transform=`translateX(${currentX}px)`;fill.style.width=`${currentX+46}px`;
+    thumb.style.transform=`translateX(${currentX}px)`;fill.style.width=`${currentX+50}px`;
   }
   function end(){
     if(!dragging)return;
@@ -1135,7 +1135,7 @@ function drawQR(codeText,statusForOverlay,emptyMsg){
   const container=document.getElementById('qrcode'),overlay=document.getElementById('usedOverlay'),stamp=document.getElementById('usedStamp');
   if(!codeText){overlay.classList.remove('show');container.innerHTML=`<div class="placeholder-text">${emptyMsg||'コードがありません'}</div>`;return;}
   container.innerHTML='';
-  new QRCode(container,{text:BASE_URL+codeText,width:170,height:170,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+  new QRCode(container,{text:BASE_URL+codeText,width:200,height:200,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
   if(statusForOverlay==='済'){stamp.textContent='使用済み';stamp.classList.remove('ng3');overlay.classList.add('show');}
   else if(statusForOverlay==='NG3'){stamp.textContent='NG3 (破棄)';stamp.classList.add('ng3');overlay.classList.add('show');}
   else{overlay.classList.remove('show');}

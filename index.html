@@ -142,6 +142,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 .modal-msg{font-size:.77rem;font-weight:800;min-height:1.15em;margin-bottom:8px;color:#dc2626}
 .modal-msg.ok{color:#15803d}
 .modal-actions{display:flex;gap:8px;margin-bottom:8px}
+.sheet-edit-box{border:1.5px solid #bbf7d0;background:#f0fdf4;border-radius:10px;padding:10px;margin-top:10px}
+.sheet-edit-title{font-size:.82rem;font-weight:800;color:#166534;margin:0 0 5px}
+.sheet-edit-note{font-size:.72rem;color:#334155;line-height:1.48;margin:0 0 8px}
+.sheet-edit-warn{color:#b91c1c;font-weight:700}
+.sheet-edit-sub{font-size:.69rem;color:#64748b;line-height:1.4;margin:6px 0 0}
 .backup-box{border-top:1.5px solid #e2e8f0;margin-top:10px;padding-top:10px}
 .backup-title{font-size:.82rem;font-weight:800;color:#0f766e;margin:0 0 4px}
 .backup-note{font-size:.72rem;color:#64748b;line-height:1.4;margin:0 0 8px}
@@ -320,7 +325,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 
 <div id="settingsModal" class="modal-backdrop">
   <div class="modal-card">
-    <h2 class="modal-title">⚙️ スプレッドシート接続設定 <span style="font-size:.72rem;color:#64748b;font-weight:700;">v2.1</span></h2>
+    <h2 class="modal-title">⚙️ スプレッドシート接続設定 <span style="font-size:.72rem;color:#64748b;font-weight:700;">v2.2</span></h2>
     <p class="modal-desc">ご自身のGASウェブアプリURLと、<code>コード.gs</code>に設定した合言葉を入力してください。</p>
     <label class="field-label" for="inputApiUrl">GAS ウェブアプリURL（.../exec）</label>
     <input type="url" id="inputApiUrl" class="modal-input" placeholder="https://script.google.com/macros/s/.../exec">
@@ -333,6 +338,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
     <div class="modal-actions">
       <button type="button" id="saveSettingsBtn" class="action-btn btn-blue" style="flex:2;" onclick="saveAndTestSettings()">接続テストして保存</button>
       <button type="button" class="action-btn btn-gray" style="flex:1;" onclick="closeSettingsModal()">閉じる</button>
+    </div>
+
+    <div id="sheetEditBox" class="sheet-edit-box" style="display:none;">
+      <div class="sheet-edit-title">📊 シートの編集・タブ整理</div>
+      <p class="sheet-edit-note">
+        アプリには左から<b>4つのタブ</b>が優先表示されます（NGリストは別）。<br>
+        使い終わったタブの削除・非表示やデータ整理は、下のボタンからスプレッドシートを開いて行ってください。<br>
+        <span class="sheet-edit-warn">※「NGリスト」タブ自体は削除しないでください。</span>
+      </p>
+      <button type="button" class="action-btn btn-green btn-full" onclick="openSpreadsheet()">📊 スプレッドシートを開いて編集</button>
+      <p class="sheet-edit-sub">※「アクセス権が必要」と出た場合は、スプレッドシートアプリ右上のアイコンから専用Googleアカウントに切り替えてください。</p>
     </div>
 
     <div id="backupBox" class="backup-box" style="display:none;">
@@ -356,6 +372,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 <script>
 const STORAGE_KEY_URL='l2s_pro_gas_url';
 const STORAGE_KEY_PASS='l2s_pro_gas_pass';
+const STORAGE_KEY_SHEET_URL='l2s_pro_sheet_url';
 const STORAGE_KEY_SOUND='l2s_pro_sound_on';
 const BASE_URL="https://store.pokemongo.com/ja/offer-redemption?passcode=";
 const ITEM_HEIGHT=38;
@@ -439,6 +456,9 @@ function restoreConfigFromHash(){
   if(!parsed)return false;
   const prev=getSavedConfig();
   const wasMissing=!prev.url||!prev.pass||prev.url!==parsed.url||prev.pass!==parsed.pass;
+  if(prev.url!==parsed.url){
+    localStorage.removeItem(STORAGE_KEY_SHEET_URL);
+  }
   localStorage.setItem(STORAGE_KEY_URL,parsed.url);
   localStorage.setItem(STORAGE_KEY_PASS,parsed.pass);
   markNeedsSetup(false);
@@ -530,7 +550,25 @@ function triggerFlash(id){
 function getSavedConfig(){
   return{url:(localStorage.getItem(STORAGE_KEY_URL)||'').trim(),pass:(localStorage.getItem(STORAGE_KEY_PASS)||'').trim()};
 }
+function getSavedSheetUrl(){
+  return (localStorage.getItem(STORAGE_KEY_SHEET_URL)||'').trim();
+}
 function markNeedsSetup(flag){document.getElementById('settingsBtn').classList.toggle('needs-setup',!!flag);}
+function updateSheetEditBoxVisibility(){
+  const box=document.getElementById('sheetEditBox');
+  if(!box)return;
+  const {url,pass}=getSavedConfig();
+  const sheetUrl=getSavedSheetUrl();
+  box.style.display=(url&&pass&&sheetUrl)?'block':'none';
+}
+function openSpreadsheet(){
+  const sheetUrl=getSavedSheetUrl();
+  if(!sheetUrl){
+    setSettingsMsg('⚠️ シートURLが未取得です。接続テストまたは🔄再読み込みを行ってください。',false);
+    return;
+  }
+  window.open(sheetUrl,'_blank','noopener');
+}
 function updateBackupBoxVisibility(){
   const {url,pass}=getSavedConfig();
   document.getElementById('backupBox').style.display=(url&&pass)?'block':'none';
@@ -541,6 +579,7 @@ function openSettingsModal(errMsg){
   document.getElementById('inputApiUrl').value=url;
   document.getElementById('inputApiPass').value=pass;
   setSettingsMsg(errMsg||'',false);
+  updateSheetEditBoxVisibility();
   updateBackupBoxVisibility();
   document.getElementById('settingsModal').classList.add('show');
 }
@@ -564,7 +603,11 @@ async function saveAndTestSettings(){
   const btn=document.getElementById('saveSettingsBtn');
   btn.disabled=true;btn.textContent='⏳ 接続テスト中...';setSettingsMsg('',false);
   try{
+    const prevUrl=getSavedConfig().url;
     const data=await callGasApi({action:'getState'},url,pass);
+    if(prevUrl&&prevUrl!==url){
+      localStorage.removeItem(STORAGE_KEY_SHEET_URL);
+    }
     localStorage.setItem(STORAGE_KEY_URL,url);
     localStorage.setItem(STORAGE_KEY_PASS,pass);
     markNeedsSetup(false);
@@ -577,10 +620,12 @@ async function saveAndTestSettings(){
 }
 function clearSavedSettings(){
   if(!confirm('このスマホに保存されている接続設定を削除しますか？'))return;
-  localStorage.removeItem(STORAGE_KEY_URL);localStorage.removeItem(STORAGE_KEY_PASS);
+  localStorage.removeItem(STORAGE_KEY_URL);
+  localStorage.removeItem(STORAGE_KEY_PASS);
+  localStorage.removeItem(STORAGE_KEY_SHEET_URL);
   history.replaceState(null,'',window.location.href.split('#')[0]);
   document.getElementById('inputApiUrl').value='';document.getElementById('inputApiPass').value='';
-  markNeedsSetup(true);updateBackupBoxVisibility();setSettingsMsg('接続設定を削除しました。',true);
+  markNeedsSetup(true);updateSheetEditBoxVisibility();updateBackupBoxVisibility();setSettingsMsg('接続設定を削除しました。',true);
 }
 
 async function callGasApi(payload,overrideUrl,overridePass){
@@ -610,6 +655,10 @@ async function loadAppState(keepLotName){
 }
 function applyLoadedAppState(data,prevLotName){
   appState=data;
+  if(data&&typeof data.sheetUrl==='string'&&data.sheetUrl.trim()){
+    localStorage.setItem(STORAGE_KEY_SHEET_URL,data.sheetUrl.trim());
+  }
+  updateSheetEditBoxVisibility();
   if(prevLotName){const idx=appState.lots.findIndex(l=>l.name===prevLotName);activeLotIdx=idx>=0?idx:0;}else{activeLotIdx=0;}
   renderLotButtons();selectLot(activeLotIdx,true);renderNgTabBadge();refreshNgListUI(true);refreshAppendTabOptions();renderRegList();
 }

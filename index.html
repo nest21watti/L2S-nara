@@ -120,19 +120,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
 .sub-button{flex:1;color:#fff;border:none;padding:10px;font-size:.82rem;font-weight:800;border-radius:8px;cursor:pointer}
 #keyboardToggleBtn{background:#5f6368}
 #clearBtn{background:#d93025}
-.modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.58);display:none;align-items:center;justify-content:center;padding:14px;z-index:100}
+.modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.58);display:none;align-items:center;justify-content:center;padding:12px;z-index:100}
 .modal-backdrop.show{display:flex}
-.modal-card{width:100%;max-width:420px;background:#fff;border-radius:16px;padding:16px;box-shadow:0 12px 32px rgba(0,0,0,.25)}
-.modal-title{font-size:1rem;font-weight:900;color:#0d47a1;margin:0 0 8px}
-.modal-desc{font-size:.76rem;color:#475569;line-height:1.5;margin:0 0 12px}
-.field-label{display:block;font-size:.78rem;font-weight:800;color:#334155;margin:0 0 4px}
-.modal-input{width:100%;padding:10px;border:1.5px solid #cbd5e1;border-radius:8px;font-size:.85rem;margin-bottom:10px}
-.pass-wrap{display:flex;gap:6px;margin-bottom:10px}
+.modal-card{width:100%;max-width:420px;max-height:92dvh;overflow-y:auto;background:#fff;border-radius:16px;padding:15px;box-shadow:0 12px 32px rgba(0,0,0,.25)}
+.modal-title{font-size:1rem;font-weight:900;color:#0d47a1;margin:0 0 6px}
+.modal-desc{font-size:.75rem;color:#475569;line-height:1.45;margin:0 0 10px}
+.field-label{display:block;font-size:.77rem;font-weight:800;color:#334155;margin:0 0 4px}
+.modal-input{width:100%;padding:9px 10px;border:1.5px solid #cbd5e1;border-radius:8px;font-size:.84rem;margin-bottom:9px}
+.pass-wrap{display:flex;gap:6px;margin-bottom:9px}
 .pass-wrap .modal-input{margin-bottom:0;flex:1}
 .pass-toggle{border:1.5px solid #cbd5e1;background:#f8fafc;border-radius:8px;padding:0 10px;font-size:.78rem;font-weight:800;cursor:pointer}
-.modal-msg{font-size:.78rem;font-weight:800;min-height:1.2em;margin-bottom:10px;color:#dc2626}
+.modal-msg{font-size:.77rem;font-weight:800;min-height:1.15em;margin-bottom:8px;color:#dc2626}
 .modal-msg.ok{color:#15803d}
 .modal-actions{display:flex;gap:8px;margin-bottom:8px}
+.backup-box{border-top:1.5px solid #e2e8f0;margin-top:10px;padding-top:10px}
+.backup-title{font-size:.82rem;font-weight:800;color:#0f766e;margin:0 0 4px}
+.backup-note{font-size:.72rem;color:#64748b;line-height:1.4;margin:0 0 8px}
+.backup-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
+.transfer-qr-wrap{display:none;text-align:center;background:#f8fafc;border:1.5px solid #cbd5e1;border-radius:10px;padding:10px;margin:8px 0}
+.transfer-qr-wrap.show{display:block}
+#transferQr{display:inline-flex;padding:6px;background:#fff;border-radius:8px}
+.transfer-warn{font-size:.7rem;color:#b91c1c;font-weight:700;margin-top:6px;line-height:1.35}
 </style>
 </head>
 <body>
@@ -142,22 +150,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
     <div class="store-title">『Pokémon GO』公式Web Store</div>
     <div class="store-subtitle">🎁コードの引き換え🎁</div>
     <div class="qr-box-wrap">
-      <div id="qrcode"><div class="placeholder-text">読み込み中...</div></div>
+      <div id="qrcode"><div class="placeholder-text">下のカメラでカードを読み取るか<br>コードを貼り付けてください</div></div>
       <div id="usedOverlay" class="used-overlay"><div id="usedStamp" class="used-stamp">使用済み</div></div>
     </div>
   </div>
 
   <div class="mode-bar">
-    <button type="button" class="mode-btn active" id="modeDist" onclick="switchMode('dist')">📋配布</button>
+    <button type="button" class="mode-btn" id="modeDist" onclick="switchMode('dist')">📋配布</button>
+    <button type="button" class="mode-btn active" id="modePaste" onclick="switchMode('paste')">📷即時</button>
     <button type="button" class="mode-btn" id="modeNg" onclick="switchMode('ng')">🍀NG(<span id="ngTabCount">0</span>)</button>
     <button type="button" class="mode-btn" id="modeReg" onclick="switchMode('reg')">📥登録</button>
-    <button type="button" class="mode-btn" id="modePaste" onclick="switchMode('paste')">📷即時</button>
     <button type="button" class="icon-btn" id="soundBtn" onclick="toggleSound()" title="効果音オン/オフ">🔊</button>
     <button type="button" class="icon-btn" onclick="loadAppState()" title="最新データ取得">🔄</button>
     <button type="button" class="icon-btn" id="settingsBtn" onclick="openSettingsModal()" title="接続設定">⚙️</button>
   </div>
 
-  <div id="panelDist" class="panel active">
+  <div id="panelDist" class="panel">
     <div id="lotGrid" class="lot-grid"></div>
     <div class="meta-row">
       <span id="distMeta">残り - / 全 - 件</span>
@@ -180,6 +188,36 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
         <div id="distNgLabel" class="slide-label">ダメだったらスライド（NG1へ） ▶▶</div>
         <div id="distNgThumb" class="slide-thumb">NG</div>
       </div>
+    </div>
+  </div>
+
+  <div id="panelPaste" class="panel active">
+    <div class="instant-cam-row">
+      <button type="button" class="action-btn btn-blue" onclick="document.getElementById('instantCamInput').click()">📷 カメラで即読</button>
+      <button type="button" class="action-btn btn-teal" onclick="startInstantCamera()">🎥 画面内カメラ</button>
+    </div>
+    <input type="file" id="instantCamInput" accept="image/*" capture="environment" style="display:none" onchange="handleInstantFileSelect(this)">
+
+    <div id="instantCamWrap" class="live-cam-wrap">
+      <video id="instantVideo" class="live-video" autoplay playsinline muted></video>
+      <div class="cam-guide narrow"></div>
+      <div id="instantFlash" class="cam-flash"></div>
+      <div class="cam-controls">
+        <button type="button" class="action-btn btn-green" style="flex:2;" onclick="captureInstantCamera()">📸 パシャッと即QR表示</button>
+        <button type="button" class="action-btn btn-gray" style="flex:1;" onclick="stopInstantCamera()">閉じる</button>
+      </div>
+    </div>
+
+    <div id="instantOcrStatus" class="ocr-status"></div>
+    <div id="instantCandidates" class="instant-chips"></div>
+
+    <div class="form-group">
+      <label class="paste-label" for="scannedText">読み取りコード（直接貼り付け・修正もOK）</label>
+      <textarea id="scannedText" class="paste-area" placeholder="カメラで撮るか、ここに長押しペースト" inputmode="none" oninput="onPasteInput()"></textarea>
+    </div>
+    <div class="button-row">
+      <button type="button" class="sub-button" id="keyboardToggleBtn" onclick="toggleKeyboard()">キーボード許可</button>
+      <button type="button" class="sub-button" id="clearBtn" onclick="clearText()">クリア</button>
     </div>
   </div>
 
@@ -264,42 +302,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
       <button type="button" id="saveRegBtn" class="action-btn btn-green btn-full" onclick="submitRegistration()">💾 スプレッドシートへまとめて登録</button>
     </div>
   </div>
-
-  <div id="panelPaste" class="panel">
-    <div class="instant-cam-row">
-      <button type="button" class="action-btn btn-blue" onclick="document.getElementById('instantCamInput').click()">📷 カメラで即読</button>
-      <button type="button" class="action-btn btn-teal" onclick="startInstantCamera()">🎥 画面内カメラ</button>
-    </div>
-    <input type="file" id="instantCamInput" accept="image/*" capture="environment" style="display:none" onchange="handleInstantFileSelect(this)">
-
-    <div id="instantCamWrap" class="live-cam-wrap">
-      <video id="instantVideo" class="live-video" autoplay playsinline muted></video>
-      <div class="cam-guide narrow"></div>
-      <div id="instantFlash" class="cam-flash"></div>
-      <div class="cam-controls">
-        <button type="button" class="action-btn btn-green" style="flex:2;" onclick="captureInstantCamera()">📸 パシャッと即QR表示</button>
-        <button type="button" class="action-btn btn-gray" style="flex:1;" onclick="stopInstantCamera()">閉じる</button>
-      </div>
-    </div>
-
-    <div id="instantOcrStatus" class="ocr-status"></div>
-    <div id="instantCandidates" class="instant-chips"></div>
-
-    <div class="form-group">
-      <label class="paste-label" for="scannedText">読み取りコード（直接貼り付け・修正もOK）</label>
-      <textarea id="scannedText" class="paste-area" placeholder="カメラで撮るか、ここに長押しペースト" inputmode="none" oninput="onPasteInput()"></textarea>
-    </div>
-    <div class="button-row">
-      <button type="button" class="sub-button" id="keyboardToggleBtn" onclick="toggleKeyboard()">キーボード許可</button>
-      <button type="button" class="sub-button" id="clearBtn" onclick="clearText()">クリア</button>
-    </div>
-  </div>
 </div>
 
 <div id="settingsModal" class="modal-backdrop">
   <div class="modal-card">
     <h2 class="modal-title">⚙️ スプレッドシート接続設定</h2>
-    <p class="modal-desc">ご自身のGASウェブアプリURLと、<code>コード.gs</code>に設定した合言葉を入力してください。入力内容はこのスマホの中にだけ保存されます。</p>
+    <p class="modal-desc">ご自身のGASウェブアプリURLと、<code>コード.gs</code>に設定した合言葉を入力してください。</p>
     <label class="field-label" for="inputApiUrl">GAS ウェブアプリURL（.../exec）</label>
     <input type="url" id="inputApiUrl" class="modal-input" placeholder="https://script.google.com/macros/s/.../exec">
     <label class="field-label" for="inputApiPass">合言葉（APP_PASSWORD）</label>
@@ -312,7 +320,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Ar
       <button type="button" id="saveSettingsBtn" class="action-btn btn-blue" style="flex:2;" onclick="saveAndTestSettings()">接続テストして保存</button>
       <button type="button" class="action-btn btn-gray" style="flex:1;" onclick="closeSettingsModal()">閉じる</button>
     </div>
-    <button type="button" style="width:100%;border:none;background:none;color:#94a3b8;font-size:.74rem;font-weight:700;cursor:pointer;padding:4px;" onclick="clearSavedSettings()">このスマホから接続情報を削除</button>
+
+    <div id="backupBox" class="backup-box" style="display:none;">
+      <div class="backup-title">📌 キャッシュ消去対策・別端末へ引き継ぎ</div>
+      <p class="backup-note">「復元用URLをセット」を押した状態で<b>ホーム画面に追加</b>しておくと、キャッシュが消えてもアイコンから開くだけで自動復活します。</p>
+      <div class="backup-grid">
+        <button type="button" class="action-btn btn-teal" onclick="applyRestoreUrlToBar()">📌 復元用URLをセット</button>
+        <button type="button" class="action-btn btn-indigo" onclick="copyRestoreUrl()">📋 URLをコピー</button>
+        <button type="button" class="action-btn btn-green" style="grid-column:span 2;" onclick="toggleTransferQr()">📱 別端末へ引き継ぎQRを表示</button>
+      </div>
+      <div id="transferQrWrap" class="transfer-qr-wrap">
+        <div id="transferQr"></div>
+        <div class="transfer-warn">※新しいスマホのカメラで読み取るだけで設定完了します。<br>合言葉も含まれるため、他人には見せないでください。</div>
+      </div>
+    </div>
+
+    <button type="button" style="width:100%;border:none;background:none;color:#94a3b8;font-size:.74rem;font-weight:700;cursor:pointer;padding:6px 4px 2px;" onclick="clearSavedSettings()">このスマホから接続情報を削除</button>
   </div>
 </div>
 
@@ -323,7 +346,7 @@ const STORAGE_KEY_SOUND='l2s_pro_sound_on';
 const BASE_URL="https://store.pokemongo.com/ja/offer-redemption?passcode=";
 const ITEM_HEIGHT=38;
 
-let currentMode='dist';
+let currentMode='paste';
 let appState={lots:[],allVisibleLotNames:[],ngItems:[],existingCodeMap:{}};
 let activeLotIdx=0,distSelectedIdx=0;
 let ngFilter='active',filteredNgItems=[],ngSelectedIdx=0;
@@ -340,16 +363,82 @@ window.addEventListener('DOMContentLoaded',()=>{
   bindSlider('distNgTrack','distNgThumb','distNgFill',onDistNgSlide);
   bindSlider('ngDoneTrack','ngDoneThumb','ngDoneFill',onNgDoneSlide);
   bindSlider('ngStepTrack','ngStepThumb','ngStepFill',onNgStepSlide);
+  renderPasteQR();
+
+  const restored=restoreConfigFromHash();
   const {url,pass}=getSavedConfig();
   if(!url||!pass){
     markNeedsSetup(true);
     document.getElementById('distWheel').innerHTML='<div class="wheel-empty">右上の ⚙️ から<br>GASのURLと合言葉を設定してください</div>';
-    drawQR('','','⚙️ボタンから接続設定を行うと<br>ここにQRコードが表示されます');
     openSettingsModal();
     return;
   }
+  if(restored)setInstantStatus('✓ URLから接続設定を自動復元しました');
   loadAppState();
 });
+
+/* 自動復元URLエンコード／デコード（#cfg= の中身はサーバーへ送信されません） */
+function encodeRestoreToken(url,pass){
+  const json=JSON.stringify({u:url,p:pass});
+  const b64=btoa(unescape(encodeURIComponent(json)));
+  return b64.replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+function decodeRestoreToken(token){
+  try{
+    let b64=token.replace(/-/g,'+').replace(/_/g,'/');
+    while(b64.length%4)b64+='=';
+    const obj=JSON.parse(decodeURIComponent(escape(atob(b64))));
+    if(obj&&typeof obj.u==='string'&&typeof obj.p==='string'&&obj.u.indexOf('https://script.google.com/')===0&&obj.p){
+      return{url:obj.u.trim(),pass:obj.p.trim()};
+    }
+  }catch(e){}
+  return null;
+}
+function restoreConfigFromHash(){
+  const hash=window.location.hash||'';
+  const m=hash.match(/cfg=([A-Za-z0-9\-_]+)/);
+  if(!m)return false;
+  const parsed=decodeRestoreToken(m[1]);
+  if(!parsed)return false;
+  const prev=getSavedConfig();
+  const wasMissing=!prev.url||!prev.pass||prev.url!==parsed.url||prev.pass!==parsed.pass;
+  localStorage.setItem(STORAGE_KEY_URL,parsed.url);
+  localStorage.setItem(STORAGE_KEY_PASS,parsed.pass);
+  markNeedsSetup(false);
+  return wasMissing;
+}
+function buildRestoreUrl(){
+  const {url,pass}=getSavedConfig();
+  if(!url||!pass)return '';
+  const base=window.location.href.split('#')[0];
+  return base+'#cfg='+encodeRestoreToken(url,pass);
+}
+function applyRestoreUrlToBar(){
+  const full=buildRestoreUrl();
+  if(!full){setSettingsMsg('⚠️ 先に接続テストして保存してください。',false);return;}
+  history.replaceState(null,'',full);
+  setSettingsMsg('✓ セット完了！このまま「ホーム画面に追加」かブックマークしてください。',true);
+}
+async function copyRestoreUrl(){
+  const full=buildRestoreUrl();
+  if(!full){setSettingsMsg('⚠️ 先に接続テストして保存してください。',false);return;}
+  try{
+    await navigator.clipboard.writeText(full);
+    setSettingsMsg('✓ 復元用URLをコピーしました！',true);
+  }catch(e){
+    prompt('以下のURLをコピーして控えてください（他人には見せないでください）',full);
+  }
+}
+function toggleTransferQr(){
+  const wrap=document.getElementById('transferQrWrap');
+  if(wrap.classList.contains('show')){wrap.classList.remove('show');return;}
+  const full=buildRestoreUrl();
+  if(!full){setSettingsMsg('⚠️ 先に接続テストして保存してください。',false);return;}
+  const box=document.getElementById('transferQr');
+  box.innerHTML='';
+  new QRCode(box,{text:full,width:180,height:180,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.L});
+  wrap.classList.add('show');
+}
 
 function getAudioCtx(){
   const AC=window.AudioContext||window.webkitAudioContext;
@@ -371,56 +460,33 @@ function toggleSound(){
 }
 function playShutterSound(){
   if(!soundEnabled)return;
-  const ctx=getAudioCtx();
-  if(!ctx)return;
-  const now=ctx.currentTime;
-  const dur=0.065;
+  const ctx=getAudioCtx();if(!ctx)return;
+  const now=ctx.currentTime,dur=0.065;
   const buf=ctx.createBuffer(1,Math.floor(ctx.sampleRate*dur),ctx.sampleRate);
   const ch=buf.getChannelData(0);
-  for(let i=0;i<ch.length;i++){
-    ch[i]=(Math.random()*2-1)*Math.pow(1-i/ch.length,2.5);
-  }
-  const src=ctx.createBufferSource();
-  src.buffer=buf;
-  const filt=ctx.createBiquadFilter();
-  filt.type='bandpass';
-  filt.frequency.setValueAtTime(2400,now);
-  filt.Q.setValueAtTime(1.1,now);
-  const gain=ctx.createGain();
-  gain.gain.setValueAtTime(0.65,now);
-  gain.gain.exponentialRampToValueAtTime(0.01,now+dur);
-  src.connect(filt);filt.connect(gain);gain.connect(ctx.destination);
-  src.start(now);
-  const osc=ctx.createOscillator();
-  const og=ctx.createGain();
-  osc.type='triangle';
-  osc.frequency.setValueAtTime(950,now+0.025);
-  osc.frequency.exponentialRampToValueAtTime(260,now+0.065);
-  og.gain.setValueAtTime(0.28,now+0.025);
-  og.gain.exponentialRampToValueAtTime(0.001,now+0.07);
-  osc.connect(og);og.connect(ctx.destination);
-  osc.start(now+0.025);osc.stop(now+0.075);
+  for(let i=0;i<ch.length;i++)ch[i]=(Math.random()*2-1)*Math.pow(1-i/ch.length,2.5);
+  const src=ctx.createBufferSource();src.buffer=buf;
+  const filt=ctx.createBiquadFilter();filt.type='bandpass';filt.frequency.setValueAtTime(2400,now);filt.Q.setValueAtTime(1.1,now);
+  const gain=ctx.createGain();gain.gain.setValueAtTime(0.65,now);gain.gain.exponentialRampToValueAtTime(0.01,now+dur);
+  src.connect(filt);filt.connect(gain);gain.connect(ctx.destination);src.start(now);
+  const osc=ctx.createOscillator(),og=ctx.createGain();
+  osc.type='triangle';osc.frequency.setValueAtTime(950,now+0.025);osc.frequency.exponentialRampToValueAtTime(260,now+0.065);
+  og.gain.setValueAtTime(0.28,now+0.025);og.gain.exponentialRampToValueAtTime(0.001,now+0.07);
+  osc.connect(og);og.connect(ctx.destination);osc.start(now+0.025);osc.stop(now+0.075);
 }
 function playSuccessSound(){
   if(!soundEnabled)return;
-  const ctx=getAudioCtx();
-  if(!ctx)return;
+  const ctx=getAudioCtx();if(!ctx)return;
   const now=ctx.currentTime;
   [880,1318.5].forEach((freq,i)=>{
-    const osc=ctx.createOscillator();
-    const g=ctx.createGain();
-    osc.type='sine';
-    osc.frequency.setValueAtTime(freq,now+i*0.07);
-    g.gain.setValueAtTime(0.001,now+i*0.07);
-    g.gain.linearRampToValueAtTime(0.2,now+i*0.07+0.01);
-    g.gain.exponentialRampToValueAtTime(0.001,now+i*0.07+0.14);
-    osc.connect(g);g.connect(ctx.destination);
-    osc.start(now+i*0.07);osc.stop(now+i*0.07+0.15);
+    const osc=ctx.createOscillator(),g=ctx.createGain();
+    osc.type='sine';osc.frequency.setValueAtTime(freq,now+i*0.07);
+    g.gain.setValueAtTime(0.001,now+i*0.07);g.gain.linearRampToValueAtTime(0.2,now+i*0.07+0.01);g.gain.exponentialRampToValueAtTime(0.001,now+i*0.07+0.14);
+    osc.connect(g);g.connect(ctx.destination);osc.start(now+i*0.07);osc.stop(now+i*0.07+0.15);
   });
 }
 function triggerFlash(id){
-  const el=document.getElementById(id);
-  if(!el)return;
+  const el=document.getElementById(id);if(!el)return;
   el.classList.add('active');
   requestAnimationFrame(()=>setTimeout(()=>el.classList.remove('active'),45));
 }
@@ -429,14 +495,23 @@ function getSavedConfig(){
   return{url:(localStorage.getItem(STORAGE_KEY_URL)||'').trim(),pass:(localStorage.getItem(STORAGE_KEY_PASS)||'').trim()};
 }
 function markNeedsSetup(flag){document.getElementById('settingsBtn').classList.toggle('needs-setup',!!flag);}
+function updateBackupBoxVisibility(){
+  const {url,pass}=getSavedConfig();
+  document.getElementById('backupBox').style.display=(url&&pass)?'block':'none';
+  document.getElementById('transferQrWrap').classList.remove('show');
+}
 function openSettingsModal(errMsg){
   const {url,pass}=getSavedConfig();
   document.getElementById('inputApiUrl').value=url;
   document.getElementById('inputApiPass').value=pass;
   setSettingsMsg(errMsg||'',false);
+  updateBackupBoxVisibility();
   document.getElementById('settingsModal').classList.add('show');
 }
-function closeSettingsModal(){document.getElementById('settingsModal').classList.remove('show');}
+function closeSettingsModal(){
+  document.getElementById('transferQrWrap').classList.remove('show');
+  document.getElementById('settingsModal').classList.remove('show');
+}
 function togglePassVisibility(){
   const el=document.getElementById('inputApiPass'),btn=document.querySelector('.pass-toggle');
   if(el.type==='password'){el.type='text';btn.textContent='隠す';}else{el.type='password';btn.textContent='表示';}
@@ -457,17 +532,19 @@ async function saveAndTestSettings(){
     localStorage.setItem(STORAGE_KEY_URL,url);
     localStorage.setItem(STORAGE_KEY_PASS,pass);
     markNeedsSetup(false);
-    setSettingsMsg('✓ 接続に成功しました！',true);
+    updateBackupBoxVisibility();
+    history.replaceState(null,'',buildRestoreUrl());
+    setSettingsMsg('✓ 接続成功！復元用URLもセット済みです（そのままホーム画面追加OK）',true);
     applyLoadedAppState(data,null);
-    setTimeout(closeSettingsModal,500);
   }catch(err){setSettingsMsg('⚠️ '+err.message,false);}
   finally{btn.disabled=false;btn.textContent='接続テストして保存';}
 }
 function clearSavedSettings(){
   if(!confirm('このスマホに保存されている接続設定を削除しますか？'))return;
   localStorage.removeItem(STORAGE_KEY_URL);localStorage.removeItem(STORAGE_KEY_PASS);
+  history.replaceState(null,'',window.location.href.split('#')[0]);
   document.getElementById('inputApiUrl').value='';document.getElementById('inputApiPass').value='';
-  markNeedsSetup(true);setSettingsMsg('接続設定を削除しました。',true);
+  markNeedsSetup(true);updateBackupBoxVisibility();setSettingsMsg('接続設定を削除しました。',true);
 }
 
 async function callGasApi(payload,overrideUrl,overridePass){
@@ -505,7 +582,7 @@ function switchMode(mode){
   if(currentMode==='reg'&&mode!=='reg')stopLiveCamera();
   if(currentMode==='paste'&&mode!=='paste')stopInstantCamera();
   currentMode=mode;
-  ['dist','ng','reg','paste'].forEach(m=>{
+  ['dist','paste','ng','reg'].forEach(m=>{
     const cap=m.charAt(0).toUpperCase()+m.slice(1);
     document.getElementById('mode'+cap).classList.toggle('active',m===mode);
     document.getElementById('panel'+cap).classList.toggle('active',m===mode);
